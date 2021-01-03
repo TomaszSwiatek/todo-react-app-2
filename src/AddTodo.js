@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 
 export class AddTodo extends Component {
     state = {
-        id: null,
-        content: null
+        content: ""
     }
     handleChange = (e) => {
         this.setState({
@@ -12,16 +11,26 @@ export class AddTodo extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addTodo(this.state);
-        e.target.content.value = null; //:)
+        if (e.target.content.value) {
+            this.props.addTodo(this.state)
+            // e.target.content.value = null; //also works
+            this.setState({
+                content: ""
+            })
+        }
+        else {
+            console.log("write in value to input");
+            window.prompt("write in value to input");
+        }
     }
     render() {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="content" className="">What to do?</label>
-                    <input type="text" id="content" name="content" onChange={this.handleChange} />
+                    <input type="text" id="content" onChange={this.handleChange} value={this.state.content} />
                     <button className="btn btn-small blue right">Add</button>
+
                 </form>
             </div>
         )
