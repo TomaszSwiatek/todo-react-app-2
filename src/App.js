@@ -6,7 +6,7 @@ export class App extends Component {
   state = {
     todos: [
       { id: 1, content: 'Buy some milk' },
-      { id: 2, content: 'Play mario kart' }
+      { id: 2, content: 'Play guitar' }
     ]
   }
   deleteTodo = (id) => {
